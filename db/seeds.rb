@@ -1,7 +1,33 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+
+# https://github.com/stympy/faker/tree/master/doc
+
+User.destroy_all
+Channel.destroy_all
+Message.destroy_all
+
+finn = User.create!(email: "finnpedersenkazes@gmail.com", password: "123456")
+
+general_channel = Channel.create!(name: 'general')
+paris_channel = Channel.create!(name: 'paris')
+react_channel = Channel.create!(name: 'react')
+
+puts 'user: ' + finn.email
+
+puts 'Creating 5 fake messages in General channel ...'
+5.times do
+  Message.create!(content: Faker::Hacker.say_something_smart, user: finn, channel: general_channel)
+end
+
+puts 'Creating 5 fake messages in Paris channel ...'
+5.times do
+  Message.create!(content: Faker::HitchhikersGuideToTheGalaxy.marvin_quote, user: finn, channel: paris_channel)
+end
+
+puts 'Creating 5 fake messages in React channel ...'
+5.times do
+  Message.create!(content: Faker::ChuckNorris.fact, user: finn, channel: react_channel)
+end
+
+
+puts 'Finished!'
