@@ -12,9 +12,12 @@ import messagesReducer from './reducers/messages_reducer';
 
 const chatContainer = document.getElementById('chat_app');
 
+const channels = JSON.parse(chatContainer.dataset.channels);
+// here I am getting the channels from Ruby so that I can use them in JS
+
 const initialState = {
   messages: [],
-  channels: [ 'general', 'react', 'paris' ],
+  channels: channels
   // channels: [ 'general', 'react', 'paris' ], // TODO: get that from Rails DB.
 };
 

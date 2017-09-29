@@ -4,6 +4,7 @@ class Api::V1::MessagesController < ApplicationController
     @messages = @channel.messages
     @messages_hash = @messages.map do |message|
       {
+        key: message.content,
         content: message.content,
         author: User.find(message.user_id).email,
         channel: @channel.name,
